@@ -1,0 +1,213 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int destinationIndex = 0;
+
+		int numTickets = 0;
+		boolean Restart = true;
+        while (Restart) {
+
+            try {
+
+                String[] destinations = {"Patag","patag-bulua", "Bulua","Bulua-iponan","Iponan","iponan-opol", "Opol","opol-amoros", "Amoros"};
+                double[] fares = {12.00,12.00, 20.00, 12.00,12.00,22.00, 27.00,15.00, 35.00,12.00};
+                int[] ticketCount = new int[destinations.length];
+                String[] discount ={"Sp","PWD","Senior citizen"};
+				double[] spDiscounts = {0.08, 0.20, 0.20, 0.20, 0.20};
+				double[] pwdDiscounts = {0.00, 0.20, 0.20, 0.20, 0.20};
+				double[] seniorDiscounts = {0.00, 0.20, 0.20, 0.20, 0.20};
+
+
+
+				System.out.println("            Welcome to the Jeepney Ticketing System!");
+				System.out.println("------------------------------------------------------------");     
+				System.out.println("Vice Versa");
+				System.out.println("From carmen to: ");
+
+				// display destinations and fares
+				for (int i = 0; i < destinations.length; i++) {
+					System.out.println(i + 0 + "."  + destinations[i] + " - Php" + fares[i]);
+				}
+
+
+				System.out.println("-------------------------"); 
+
+				System.out.print("Please select your destination: ");
+				destinationIndex = Integer.parseInt(input.next());
+				if(destinationIndex>4){
+					System.out.println("------Invalid------");
+					continue; 
+				}
+
+				while (true) {
+					try {
+						System.out.println("-------------------------"); 
+						System.out.print("How many tickets would you like to purchase? ");
+						numTickets = Integer.parseInt(input.next());
+
+						if (numTickets >= 0) {
+							break;
+						} else {
+							System.out.println("\nInvalid number of tickets selected.");
+						}
+					} catch (NumberFormatException e) {      
+						numTickets = 0;
+						System.out.println("\n=====Invalid input! Please enter a valid integer.=====");  
+						continue;
+					} 
+
+				}
+
+
+				// calculate total fare without discounts
+				double totalFare = fares[destinationIndex] * numTickets;
+				String discountType ="";
+				double discountPercentage = 0.0;
+
+				while(true) {
+					try {
+						// ask for discount type (SP, PWD, senior citizen)
+						System.out.println("-------------------------"); 
+						System.out.println("Are you an SP, PWD, or senior citizen? (Y/N)");
+						discountType = input.next();
+
+						// calculate fare with appropriate discount
+						if (discountType.equalsIgnoreCase("Y")) {
+							System.out.println("-------------------------");
+							System.out.println("Please enter your discount card number: ");
+							String discountCardNumber = input.next();
+
+							if (discountCardNumber.equalsIgnoreCase("SP")) {
+								discountPercentage = spDiscounts[destinationIndex]; // apply SP discount
+							} else if (discountCardNumber.equalsIgnoreCase("PWD")) {
+								discountPercentage = pwdDiscounts[destinationIndex]; // apply PWD discount
+							} else {
+								discountPercentage = seniorDiscounts[destinationIndex]; // apply senior citizen discount
+							}
+
+							break;
+						} else if(discountType.equalsIgnoreCase("N")){
+							System.out.println("Let's proceed");
+							break;
+						} else {
+							System.out.println("invalid");
+						}
+					} catch(Exception e){
+						System.out.println("Invalid input");
+					}
+				}
+
+				// calculate total fare with discount
+				double discountedFare = Math.round((1 - discountPercentage) * totalFare * 100.0) / 100.0;
+
+				ticketCount[destinationIndex] += numTickets;
+				System.out.println("-------------------------"); 
+				System.out.println("Your total fare is Php " + discountedFare + " with " + discountType + " discount of " + discountPercentage*100 + "% applied");
+				System.out.println("---------------");
+
+				System.out.println("-------------------------");
+				int pay =0;
+				double change=0;
+
+				while (true){
+					try {
+						System.out.println("Please enter the amount of money you will give: Php");
+						pay = input.nextInt();
+						change = pay - discountedFare;
+
+						if (pay >= discountedFare) {
+							System.out.println("Your change: " + change);
+							break;
+						} else if (pay < discountedFare) {
+							System.out.println("Not enough money.");
+						} else {
+							System.out.println("Invalid input.");
+						}
+					} catch (Exception e) {
+						System.out.println("Invalid input. Please enter a valid integer.");
+						input.next(); // clear the scanner buffer
+					}
+				}
+
+
+				while(true) {
+					System.out.println("-------------------------"); 
+					System.out.println("Would you like to print a receipt? (Y/N)");
+					String printReceipt = input.next();
+
+					if (printReceipt.equalsIgnoreCase("Y")) {
+						System.out.println("-------------------------");
+
+
+						System.out.println("       RECEIPT");
+						System.out.println("-------------------------");
+
+						System.out.println("Destination: " + destinations[destinationIndex]);
+						System.out.println("Number of tickets: " + numTickets);
+						System.out.println("Your cash: "+ pay);
+						System.out.println("Total fare: Php" + totalFare);
+						System.out.println("Discount: " + discountPercentage*100+"%"  );
+						System.out.println("Your change: "+change);
+
+						System.out.println("-------------------------");
+
+						break;
+					}
+
+					else if(printReceipt.equalsIgnoreCase("N")){
+						System.out.println("Thankyou! Ride safe");
+						break;
+					}    
+
+					else {
+						System.out.println("Invalid input. Please try again.");
+					}
+				}
+
+
+
+                System.out.println("Thank you for using the Jeepney Ticketing System!");
+                System.out.println("-------------------------");
+
+                // Confirmation code to continue the loop
+				while (true){
+                    try{
+						System.out.println("Enter(y) 'again' to purchase another ticket or '(n)exit' to end the program.");
+						String confirmationCode = input.next();
+
+						if (confirmationCode.equalsIgnoreCase("y")) {
+
+							System.out.println("Thank you");                  
+							System.out.println("------------------------"); 
+
+							break;
+						} 
+
+						else if (confirmationCode.equalsIgnoreCase("n")) {
+							Restart = false;
+							break;
+						}
+
+						else {
+							System.out.println("Invalid input. Program will terminate.");
+
+						} 
+					}catch (NumberFormatException e) {
+						System.out.println("");
+						System.out.println("--------Invalid Input, Try Again-------.");
+						destinationIndex = 0;
+					}
+
+				}
+
+
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.println("---------Invalid Input, Try Again.---------");
+                destinationIndex = 0;
+
+            }
+		}
+
+	}
