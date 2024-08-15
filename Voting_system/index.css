@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; 
+}
+.bg {
+    background-image: url('Images/background.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.09);
+    
+}
+.header{
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgb(11, 105, 11);
+}
+.header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header ul li{
+    list-style: none;
+    margin-left: 20px; 
+}
+.header ul li a{
+    text-decoration: none;
+    padding: 4px 15px;
+    color: #ffffff;
+    font-size: 25px;
+    font-family: 'Rancho', cursive;
+    border-radius: 20px;
+}
+.header ul li a:hover{
+    background: rgb(157, 192, 2);
+}
+ .cent{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+ section #text{
+    color: rgb(5, 70, 43);
+    font-size: 8vw;
+    text-align: center;
+    font-weight: bolder;
+    font-family: 'Rancho', cursive;
+    /* font-family: 'Bebas Neue', cursive; */
+    /* margin-right: 50%; */
+    text-shadow:7px 5px 5px rgb(143, 158, 4);
+    
+}
+section #text:hover{
+    animation: vote 0.5s ease-out  ;
+}
+@keyframes vote{
+    0%{
+          
+    }
+    50%{
+        font-size: 10vw; 
+    }
+    100%{
+
+    }
+}  
+ #btn{
+    position:absolute ;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    background:rgb(52, 177, 3);
+    color: #fff;
+    font-size: 1.7em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    transform: translateY(260px);
+}
+#btn:hover{
+    box-shadow: 5px 5px 10px rgb(157, 192, 2);;
+} 
+.second{
+    /* position: relative; */
+    padding: 20px;
+    background: rgb(3, 94, 23);
+    min-height: 100vh;
+}
+.second h1{
+    font-size:35px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-family: 'Rancho', cursive;
+    text-align: center;
+}
+.second h2{
+    font-size:35px;
+    color: #fff;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.second p{
+    font-size: 18px;
+    color: #fff;
+}
+.third::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("Images/phinma.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    filter: blur(6px);
+    z-index: -1;
+    opacity: 0.5; 
+}
+
+.third h1{
+    font-size:35px;
+    margin:20px 20px;
+    color: #ffff;
+    font-family: 'Rancho', cursive;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(14, 146, 2, 0.2);
+    max-width: 300px;
+    height: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background: linear-gradient(to right, #35b304, #046419); 
+
+  }
+
+  .card a {
+    padding: 12px;
+    color: white;
+    background-color: #54c707fd;
+    text-align: center;
+    font-size: 18px;
+  }
+  .card a:hover {
+    opacity: 0.7;
+  }
+
+  .text{
+  color: #fff;
+}
+footer{
+    padding: 20px;
+    margin: 0px;
+    background:#046419;
+}
+.sociallogo{
+    text-align: center;
+    padding: 10px;
+}
+.sociallogo a{
+    margin: 7px;
+    color: #ffff;
+    position: relative;
+}
+.sociallogo a:hover{
+    color: rgb(123, 211, 7);
+}
+@media screen and (max-width:620px) {
+    section #text{
+        font-size: 80px;
+    }
+}
+@media screen and (max-width:480px) {
+
+    .header .logo{
+        font-weight: 400;
+        font-size: 20px;
+    }
+    .header ul li{
+        margin-left: 5px; 
+    }
+    .header ul li a{
+        padding: 6px 10px;
+        font-size: 20px;
+    }
+    section #text{
+        font-size: 60px;
+    }
+    
+}
